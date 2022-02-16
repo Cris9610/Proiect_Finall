@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+<head>
+<style>
+img { 50%}
+</style>
+</head>
+{% block title %}
+
+<title>Pungi</title>
+
+<style>
+td { text-align: right; }
+th { height: 0px; }
+table { width: 65%; }
+
+
+</style>
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Adauga Produs (Pungi)</h1>
+<hr>
+<table>
+    <tr>
+        <td>
+            <img src="https://i.imgur.com/EzmWRiV.png"  alt="Masurare dimensiuni">
+        </td>
+        <td>
+
+        </td>
+        <td>
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                <table class="table" align="left" >
+                    <th>{{ field.label }}</th>
+                    <td>{{ field }}</td>
+                </table>
+                {% endfor %}
+                <button type="submit" >Salveaza</button>
+</table>
+
+{% endblock %}

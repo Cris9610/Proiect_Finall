@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav>
+                <a href="/">Homepage</a>
+                {% if request.user.is_authenticated %}
+	                    {% if request.user.is_superuser %}
+	                        <a href="/admin">Admin</a>
+	                    {% endif %}
+                        <a href="{% url 'stocks:produse' %}">Stocks</a>
+	                    <a href="{% url 'users:logout' %}">Logout</a>
+                        <a href="{% url 'users:profile' %}">Profile</a>
+	                {% else %}
+	                    <a href="{% url 'users:login' %}">Login</a>
+	                    <a href="{% url 'users:register' %}">Register</a>
+	                {% endif %}
+            </nav>
+        </div>
+    </div>
+</div>

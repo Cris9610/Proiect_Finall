@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+<title>Lista Comenzi Folie</title>
+
+{% endblock %}
+
+{% block content %}
+
+<a class="btn btn-success" href="{% url 'stocks:folie' %}">Adauga</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Tip folie</th>
+                <th>Grosime Folie (um)</th>
+                <th>Latime Folie (mm)</th>
+                <th>Cantitate (Kg)</th>
+                {% if request.user.is_superuser %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for item in object_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ item.tip_folie }}</td>
+            <td>{{ item.grosime_folie }}</td>
+            <td>{{ item.latime_folie }}</td>
+            <td>{{ item.cantitate }}</td>
+            {% if request.user.is_superuser %}
+            <td>{{ item.active }}</td>
+            <td><a class="btn btn-info" href="{% url 'stocks:modifica-folie' item.id %}">Update</a>
+                <a class="btn btn-danger" href="{% url 'stocks:sterge-folie' item.id %}">Delete</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<hr>
+{% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li><a class="btn btn-light" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled btn btn-dark"><span>&laquo;</span></li>
+        {% endif %}
+
+        {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li class="active btn btn-info"><span>{{ i }} <span class="sr-only">(curent)</span></span></li>
+            {% else %}
+                <li><a class="btn btn-outline-info" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li><a class="btn btn-light" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled btn btn-dark"><span><a>&raquo;</a></span></li>
+        {%endif%}
+    </ul>
+{% endif %}
+
+
+{% endblock %}

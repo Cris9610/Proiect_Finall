@@ -1,0 +1,115 @@
+{% block title %}
+<head>
+    <style>
+
+<!--a {-->
+<!--  display: block;-->
+<!--  padding: 8px;-->
+<!--  background-color: #dddddd;-->
+<!--}-->
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav {
+    padding: 10px 10px;
+}
+li {
+  float: left;
+  border-right: 1px solid #bbb;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 16px;
+}
+
+li a:hover {
+  background-color: lightblue;
+}
+li:last-child {
+  border-right: none;
+}
+.active {
+  background-color: navy;
+}
+    </style>
+</head>
+
+{% endblock %}
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-16">-->
+<!--            <nav>-->
+
+<!--                <a class="btn" href="/">Homepage</a>-->
+
+<!--                {% if request.user.is_authenticated %}-->
+
+<!--                    {% if request.user.is_superuser %}-->
+
+<!--                        <a class="btn" href="/admin">Administrare</a>-->
+
+<!--                    {% endif %}-->
+
+<!--                    <a class="btn" href="{% url 'users:profile' %}">Profile of {{ request.user.first_name }} {{ request.user.last_name }} </a>-->
+<!--                    <a class="btn" href="/users/upload">Upload Poza Produs</a>-->
+<!--                    <a class="btn" href="{% url 'stocks:produse' %}">Comanda Produse</a>-->
+<!--                    <a class="btn" href="{% url 'stocks:pungiview' %}">Comenzi Pungi</a>-->
+<!--                    <a class="btn" href="{% url 'stocks:folieview' %}">Comenzi Folie</a>-->
+<!--                    <a class="btn" href="{% url 'users:logout' %}">Logout</a>-->
+
+<!--                {% else %}-->
+
+<!--                    <a class="btn" href="{% url 'users:login' %}">Login</a>-->
+<!--	                <a class="btn" href="{% url 'users:register' %}">Register</a>-->
+
+<!--                {% endif %}-->
+
+<!--                    <a class="btn" href="{% url 'users:contact' %}">Contact</a>-->
+
+
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<hr>
+<nav>
+    <ul>
+                <li><a class="active" href="/">Homepage</a></li>
+
+                {% if request.user.is_authenticated %}
+
+                    {% if request.user.is_superuser %}
+
+                         <li><a class="active" href="/admin">Administrare</a></li>
+
+                    {% endif %}
+
+                     <li><a class="active" href="{% url 'users:profile' %}">Profile of {{ request.user.first_name }} {{ request.user.last_name }} </a></li>
+                     <li><a class="active" href="/users/upload">Upload Poza Produs</a></li>
+                     <li><a class="active" href="{% url 'stocks:produse' %}">Comanda Produse</a></li>
+                     <li><a class="active" href="{% url 'stocks:pungiview' %}">Comenzi Pungi</a></li>
+                     <li><a class="active" href="{% url 'stocks:folieview' %}">Comenzi Folie</a></li>
+                     <li><a class="active" href="{% url 'users:logout' %}">Logout</a></li>
+
+                {% else %}
+
+                     <li><a class="active" href="{% url 'users:login' %}">Login</a></li>
+	                 <li><a class="active" href="{% url 'users:register' %}">Register</a></li>
+
+                {% endif %}
+
+                     <li style="float:right"><a class="active" href="{% url 'users:contact' %}">Contact</a> </li>
+    </ul>
+</nav>
+<hr>

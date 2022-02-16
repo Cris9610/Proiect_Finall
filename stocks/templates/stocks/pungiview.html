@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+<title>Lista Comenzi Pungi</title>
+<style>
+    tr:hover {background-color: yellow; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<a class="btn btn-success" href="{% url 'stocks:pungi' %}">Adauga</a>
+
+<div style="overflow-x:auto;">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Tip punga</th>
+                <th>Inaltime Punga (mm)</th>
+                <th>Latime Punga (mm)</th>
+                <th>Inaltime Pliu (mm)</th>
+                <th>Grosime Folie Punga (mm)</th>
+                <th>Zipper</th>
+                <th>Eurohole</th>
+                <th>Ciupitura</th>
+                <th>Cantitate</th>
+
+                {% if request.user.is_superuser %}
+                <th>Actions</th>
+                {% endif %}
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in object_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ item.tip_punga }}</td>
+            <td>{{ item.inaltime_punga }}</td>
+            <td>{{ item.latime_punga }}</td>
+            <td>{{ item.inaltime_pliu }}</td>
+            <td>{{ item.grosime_folie_p }}</td>
+            <td>{{ item.zipper }}</td>
+            <td>{{ item.eurohole }}</td>
+            <td>{{ item.ciupitura }}</td>
+            <td>{{ item.cantitate }}</td>
+
+            {% if request.user.is_superuser %}
+            <td>{{ item.active }}</td>
+            <td><a class="btn btn-info" href="{% url 'stocks:modifica-pungi' item.id %}">Update</a>
+                <a class="btn btn-danger" href="{% url 'stocks:sterge-pungi' item.id %}">Delete</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<hr>
+{% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li><a class="btn btn-light" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled btn btn-dark"><span>&laquo;</span></li>
+        {% endif %}
+
+        {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li class="active btn btn-info"><span>{{ i }} <span class="sr-only">(curent)</span></span></li>
+            {% else %}
+                <li><a class="btn btn-outline-info" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li><a class="btn btn-light" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled btn btn-dark"><span>&raquo;</span></li>
+        {%endif%}
+    </ul>
+{% endif %}
+
+
+{% endblock %}

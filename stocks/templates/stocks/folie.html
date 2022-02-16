@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+<title>Folie</title>
+<style>
+
+td {
+    text-align: right;
+}
+table {
+    width: 25%;
+}
+
+th {
+    height: 50px;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h1>Adauga Produs (Folie)</h1>
+<hr>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <table><th>{{ field.label }}</th><td>{{ field }}</th></table>
+        {% endfor %}
+        <button type="submit">Salveaza</button>
+
+    </form>
+
+{% endblock %}
