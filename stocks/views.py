@@ -53,7 +53,7 @@ class folie_view(LoginRequiredMixin, CreateView):
 class PungiView(LoginRequiredMixin, ListView):
     model = Pungi
     template_name = 'stocks/pungiview.html'
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         return Pungi.objects.filter(active=True)
@@ -61,7 +61,7 @@ class PungiView(LoginRequiredMixin, ListView):
 class FolieView(LoginRequiredMixin, ListView):
     model = Folie
     template_name = 'stocks/folieview.html'
-    paginate_by = 2
+    paginate_by = 5
 
     def get_queryset(self):
         return Folie.objects.filter(active=True)
@@ -88,6 +88,7 @@ class UpdateFolieView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse ('stocks:folieview')
 
+
 @login_required
 def deactivate_Pungi(request, pk):
     if Pungi.objects.filter(id=pk).exists:
@@ -99,3 +100,7 @@ def deactivate_Folie(request, pk):
     if Folie.objects.filter(id=pk).exists():
         Folie.objects.filter(id=pk).update(active=False)
     return redirect('stocks:folieview')
+
+@login_required
+def ComenziView(request):
+    return render (request, 'comenzi.html')

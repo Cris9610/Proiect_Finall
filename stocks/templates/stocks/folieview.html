@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<a class="btn btn-success" href="{% url 'stocks:folie' %}">Adauga</a>
+<a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'stocks:folie' %}">Adauga</a>
 
     <table class="table">
         <thead>
@@ -27,7 +27,7 @@
 
         {% for item in object_list %}
         <tr>
-            <td>{{ forloop.counter }}</td>
+            <td>{{ forloop.counter0|add:page_obj.start_index }}</td>
             <td>{{ item.tip_folie }}</td>
             <td>{{ item.grosime_folie }}</td>
             <td>{{ item.latime_folie }}</td>
@@ -48,7 +48,7 @@
         {% if page_obj.has_previous %}
             <li><a class="btn btn-light" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
         {% else %}
-            <li class="disabled btn btn-dark"><span>&laquo;</span></li>
+            <a class="disabled btn btn-dark">&laquo;</a>
         {% endif %}
 
         {% for i in paginator.page_range %}
@@ -63,8 +63,10 @@
         {% if page_obj.has_next %}
             <li><a class="btn btn-light" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
         {% else %}
-            <li class="disabled btn btn-dark"><span><a>&raquo;</a></span></li>
+            <a class="disabled btn btn-dark">&raquo;</a>
         {%endif%}
+        <hr>
+        <p>Rezultate afisate {{ page_obj.start_index }}-{{ page_obj.end_index }} din {{ page_obj.paginator.count }}</p>
     </ul>
 {% endif %}
 

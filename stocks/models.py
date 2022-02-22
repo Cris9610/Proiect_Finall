@@ -31,7 +31,7 @@ class Pungi(models.Model):
     ciupitura = models.BooleanField()
     cantitate = models.PositiveBigIntegerField(null=True, verbose_name="Nr. Bucati(min. 10.000 buc)")
     active = models.BooleanField(default=1)
-    creat = models.DateTimeField()
+    # creat = models.DateTimeField()
 
 
     def __str__(self):
@@ -57,11 +57,11 @@ class Folie(models.Model):
 
     id= models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     tip_folie= models.CharField(max_length=6, choices=tip_punga_choice, default=neperforata, verbose_name='Tipul foliei')
-    grosime_folie = models.PositiveBigIntegerField(default=0, verbose_name='Grosime Folie(um)')
-    latime_folie = models.PositiveBigIntegerField(default=0, verbose_name='Latime Folie(mm)')
-    cantitate = models.PositiveBigIntegerField(null=True, default=0, verbose_name='Nr. kilograme')
+    grosime_folie = models.PositiveBigIntegerField(verbose_name='Grosime Folie(um)')
+    latime_folie = models.PositiveBigIntegerField(verbose_name='Latime Folie(mm)')
+    cantitate = models.PositiveBigIntegerField(null=True, verbose_name='Nr. kilograme')
     active = models.BooleanField(default=1)
-    creat = models.DateTimeField()
+    # creat = models.DateTimeField()
 
     def __str__(self):
         return f"{self.tip_folie} - {self.grosime_folie} - {self.latime_folie} - {self.cantitate}"

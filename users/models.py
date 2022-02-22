@@ -31,6 +31,7 @@ class AuthUser(AbstractUser):
     username = None
     email = models.EmailField(verbose_name='email', max_length=255, unique=True)
     phone_no = models.CharField(max_length=16, null=True)
+    company = models.CharField(max_length=200, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

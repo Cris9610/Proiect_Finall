@@ -15,6 +15,23 @@ table {
 th {
     height: 50px;
 }
+.button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
 </style>
 {% endblock %}
@@ -28,7 +45,7 @@ th {
         {% for field in form %}
             <table><th>{{ field.label }}</th><td>{{ field }}</th></table>
         {% endfor %}
-        <button type="submit">Salveaza</button>
+        <button type="submit" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Salveaza</button>
 
     </form>
 

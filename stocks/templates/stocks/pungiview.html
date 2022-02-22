@@ -3,15 +3,13 @@
 {% block title %}
 
 <title>Lista Comenzi Pungi</title>
-<style>
-    tr:hover {background-color: yellow; }
-</style>
+
 {% endblock %}
 
 {% block content %}
 
 
-<a class="btn btn-success" href="{% url 'stocks:pungi' %}">Adauga</a>
+<a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="{% url 'stocks:pungi' %}">Adauga</a>
 
 <div style="overflow-x:auto;">
 
@@ -38,15 +36,28 @@
         <tbody>
         {% for item in object_list %}
         <tr>
-            <td>{{ forloop.counter }}</td>
+            <td>{{ forloop.counter0|add:page_obj.start_index  }}</td>
             <td>{{ item.tip_punga }}</td>
             <td>{{ item.inaltime_punga }}</td>
             <td>{{ item.latime_punga }}</td>
             <td>{{ item.inaltime_pliu }}</td>
             <td>{{ item.grosime_folie_p }}</td>
-            <td>{{ item.zipper }}</td>
-            <td>{{ item.eurohole }}</td>
-            <td>{{ item.ciupitura }}</td>
+            <td>{% if item.zipper is True %}
+                Yes
+                {% else %}
+                No
+                {% endif %}
+                </td>
+            <td>{% if item.eurohole is True %}
+                Yes
+                {% else %}
+                No
+                {% endif %}</td>
+            <td>{% if item.ciupitura is True %}
+                Yes
+                {% else %}
+                No
+                {% endif %}</td>
             <td>{{ item.cantitate }}</td>
 
             {% if request.user.is_superuser %}
@@ -60,12 +71,13 @@
     </table>
 </div>
 <hr>
+
 {% if is_paginated %}
     <ul class="pagination">
         {% if page_obj.has_previous %}
             <li><a class="btn btn-light" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
         {% else %}
-            <li class="disabled btn btn-dark"><span>&laquo;</span></li>
+            <a class="disabled btn btn-dark">&laquo;</a>
         {% endif %}
 
         {% for i in paginator.page_range %}
@@ -80,8 +92,10 @@
         {% if page_obj.has_next %}
             <li><a class="btn btn-light" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
         {% else %}
-            <li class="disabled btn btn-dark"><span>&raquo;</span></li>
+            <a class="disabled btn btn-dark">&raquo;</a>
         {%endif%}
+        <hr>
+        <p>Rezultate afisate {{ page_obj.start_index }}-{{ page_obj.end_index }} din {{ page_obj.paginator.count }}</p>
     </ul>
 {% endif %}
 

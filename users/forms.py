@@ -9,7 +9,24 @@ AuthUser = get_user_model()
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = AuthUser
-        fields = ['first_name', 'last_name', 'email', 'phone_no']
+        fields = ['first_name', 'last_name', 'email', 'phone_no', 'company']
+
+    def __init__(self,*args,**kwargs):
+        super(RegisterForm, self).__init__(*args,**kwargs)
+        self.fields["first_name"].widget.attrs["class"]="input"
+        self.fields["last_name"].widget.attrs["class"] = "input"
+        self.fields["password"].widget.attrs["class"] = "input"
+        self.fields["password_confirmation"].widget.attrs["class"] = "input"
+        self.fields["email"].widget.attrs["class"] = "input"
+        self.fields["phone_no"].widget.attrs["class"] = "input"
+        self.fields["company"].widget.attrs["class"] = "input"
+        self.fields["phone_no"].widget.attrs["placeholder"] = "Phone No."
+        self.fields["first_name"].widget.attrs["placeholder"] = "First Name"
+        self.fields["last_name"].widget.attrs["placeholder"] = "Last Name"
+        self.fields["password"].widget.attrs["placeholder"] = "Password"
+        self.fields["password_confirmation"].widget.attrs["placeholder"] = "Password Confirmation"
+        self.fields["email"].widget.attrs["placeholder"] = "Email"
+        self.fields["company"].widget.attrs["placeholder"] = "Company"
 
     password = forms.CharField(
         max_length=255,
@@ -79,3 +96,8 @@ class ProfileImageForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['avatar']
+
+# class EditProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = AuthUser
+#         fields = ['last_name', 'first_name', 'phone_no', 'company']

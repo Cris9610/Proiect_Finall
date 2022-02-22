@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Plasare comenzi</title>
+    <title>Comenzi in procesare</title>
 <style>
 .button {
   background-color: red;
@@ -19,24 +19,20 @@
   background-color: #4CAF50; /* Green */
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
 }
 
 </style>
 
-
-
 {% endblock %}
 
 {% block content %}
-<h1>Comanda Produse</h1>
+<h1>Comenzi in procesare</h1>
 <hr>
-<h4>De aici puteti plasa comenzi de produse si materie prima.</h4>
+<h4>De aici puteti verifica toate comenzile care urmeaza sa fie procesate.</h4>
 
-<a  href="/stocks/pungi" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Pungi</a>
+<a href="/stocks/pungiview" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Comenzi pentru Pungi</a>
 <a><b>sau</b></a>
-<a  href="/stocks/folie" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Folie</a>
+<a href="/stocks/folieview" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Comenzi pentru Folie</a>
 
 {% endblock %}
-
-
-<!--class="btn btn-outline-primary"-->

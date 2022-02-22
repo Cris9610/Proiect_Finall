@@ -1,4 +1,12 @@
+html,
+body{
+width: 100%
+}
 body {
-    background-color: lightblue;
-    padding: 30px;
+    background-color: dcbcbc;
+    padding: 0px 40px;
+
+
+
+
 }

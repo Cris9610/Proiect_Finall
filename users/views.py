@@ -7,6 +7,8 @@ from users.email import send_register_mail
 from django.contrib.auth.decorators import login_required
 from users.forms import AuthUser
 
+from users.forms import EditProfileForm
+
 
 def register(request):
     if request.method == 'GET':
@@ -85,10 +87,29 @@ def profile_view(request):
         'form': form
     })
 
+
+# def UpdateProfileView(request):
+#     if request.method == 'GET':
+#         form = EditProfileForm()
+#     else:
+#         form = EditProfileForm(request.POST)
+#
+#         if form.is_valid():
+#             form.save()
+#
+#             return render(request, 'users:editconf')
+#
+#     return render(request, 'users/editprofile.html', {
+#         'form': form
+#     })
+
 # class UpdateProfileView(LoginRequiredMixin, UpdateView):
 #     model = AuthUser
-#     fields = ['phone_no', 'first_name', 'last_name']
-#     template_name = 'profile.html'
+#     fields = ['phone_no', 'first_name', 'last_name','company']
+#     template_name = 'users/profile.html'
+#
+#     def get_queryset(self):
+#         return AuthUser.objects.filter(active=True)
 #
 #     def get_success_url(self):
-#         return reverse ('users:profile')
+#         return reverse ('users/profile/')

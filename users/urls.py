@@ -9,5 +9,6 @@ urlpatterns = [
     path('upload/', views.upload_view, name='upload'),
     path('contact/', views.contact_view, name='contact'),
     path('profile/', views.profile_view, name='profile'),
-    # path('modifica-profile/', views.UpdateProfileView.as_view(), name= 'modifica-profile'),
+    path('profile/editprofile/', views.UpdateProfileView, name='editprofile'),
+
 ]

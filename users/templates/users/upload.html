@@ -15,7 +15,7 @@ Va rugam sa incarcati imaginea modelului de punga pe care il doriti!
 	            <form method="post" action="{% url 'users:upload' %}" enctype="multipart/form-data">
 	                {% csrf_token %}
 	                {{ form.as_p }}
-	                <input type="submit" value="Upload" />
+	                <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Upload" />
 	            </form>
 	        </div>
 	    </div>
