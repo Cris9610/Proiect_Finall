@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Upload image</title>
+<title>Upload image</title>
 {% endblock %}
 
 {% block content %}
-	<h1>Incarcati imaginea</h1>
+<h1>Incarcati imaginea</h1>
 <hr>
 <p>
-Va rugam sa incarcati imaginea modelului de punga pe care il doriti!
+    Va rugam sa incarcati imaginea modelului de punga pe care il doriti!
 </p>
-	    <div class="container">
-	        <div>
-	            <form method="post" action="{% url 'users:upload' %}" enctype="multipart/form-data">
-	                {% csrf_token %}
-	                {{ form.as_p }}
-	                <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Upload" />
-	            </form>
-	        </div>
-	    </div>
+<div class="container">
+    <div>
+        <form method="post" action="{% url 'users:upload' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Upload"/>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

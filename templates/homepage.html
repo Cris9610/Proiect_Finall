@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <head>
-<style>
+<head>
+    <style>
 body {
   background-color: d9a6ff;
 }
@@ -27,64 +27,69 @@ background: linear-gradient(180deg, grey, grey ,black);
 
 }
 
-</style>
 
+    </style>
 
 
 </head>
 
-    <title>Homepage</title>
+<title>Homepage</title>
 
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid ">
-<header class="w3-container  w3-center" style="padding:80px 16px">
+    <header class="w3-container  w3-center" style="padding:80px 16px">
 
-  <h1 class=" w3-jumbo ">Bine ati venit!</h1>
+        <h1 class=" w3-jumbo ">Bine ati venit!</h1>
 
-    {% if request.user.is_authenticated %}
-    {% else %}
-    <a class = "w3-button w3-black w3-padding-large w3-large w3-margin-top" href="/users/login/">Login !</a>
-    <a class = "w3-button w3-black w3-padding-large w3-large w3-margin-top" href="/users/register/">Register !</a>
-    <hr>
-    <p class="w3-text-light-grey"> Pentru o experienta placuta si pentru descoperirea tuturor avantajelor, <br> va rugam sa va inregistrati si sa va logati.* </p>
-    <p class="w3-right w3-padding-large w3-small w3-text-grey">*logarea este necesara pentru plasarea si verificarea comenzilor in curs</p>
-    {% endif %}
+        {% if request.user.is_authenticated %}
+        {% else %}
+        <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="/users/login/">Login !</a>
+        <a class="w3-button w3-black w3-padding-large w3-large w3-margin-top" href="/users/register/">Register !</a>
+        <hr>
+        <p class="w3-text-light-grey"> Pentru o experienta placuta si pentru descoperirea tuturor avantajelor, <br> va
+            rugam sa va inregistrati si sa va logati.* </p>
+        <p class="w3-right w3-padding-large w3-small w3-text-grey">*logarea este necesara pentru plasarea si verificarea
+            comenzilor in curs</p>
+        {% endif %}
 
-</header>
+    </header>
 </div>
 
 <div class="w3-row-padding w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-twothird">
-      <h1>Inceputuri</h1>
-      <h5 class="w3-padding-32">S-a dorit o firma serioasa si competitiva pe piata de produse de ambalare.
-      Asa a fost infiintata firma care astazi se numeste CRISEX COM. A fost creata in anul 2003,
-        iar de atunci este una dintre cele mai cunoscute firme de prelucrare a ambalajelor din plastic. </h5>
+    <div class="w3-content">
+        <div class="w3-twothird">
+            <h1>Inceputuri</h1>
+            <h5 class="w3-padding-32">S-a dorit o firma serioasa si competitiva pe piata de produse de ambalare.
+                Asa a fost infiintata firma care astazi se numeste CRISEX COM. A fost creata in anul 2003,
+                iar de atunci este una dintre cele mai cunoscute firme de prelucrare a ambalajelor din plastic. </h5>
 
-      <p class="w3-text-grey"> Datorita seriozitatii oferite partenerilor nostri, acestia ne-au ramas loiali, unii,
-        de peste 20 de ani cu mii de comenzi onorate la termen, fara nici o plangere. </p>
+            <p class="w3-text-grey"> Datorita seriozitatii oferite partenerilor nostri, acestia ne-au ramas loiali,
+                unii,
+                de peste 20 de ani cu mii de comenzi onorate la termen, fara nici o plangere. </p>
+        </div>
+        <div class="w3-third w3-center">
+        </div>
     </div>
-    <div class="w3-third w3-center">
-    </div>
-  </div>
 </div>
 
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-third w3-center">
-    </div>
+    <div class="w3-content">
+        <div class="w3-third w3-center">
+        </div>
 
-    <div class="w3-twothird w3-right">
-      <h1>Renasterea</h1>
-      <h5 class="w3-padding-32">In anul 2019, a facut un pas important catre piata pungilor de plastic, mai precis, pungile
-      care se pot resigila prin intermediul unui "zipper" din plastic. </h5>
+        <div class="w3-twothird w3-right">
+            <h1>Renasterea</h1>
+            <h5 class="w3-padding-32">In anul 2019, a facut un pas important catre piata pungilor de plastic, mai
+                precis, pungile
+                care se pot resigila prin intermediul unui "zipper" din plastic. </h5>
 
-      <p class="w3-text-grey">Prin programul fondurilor europene, s-a investit o suma considerabila pentru cumpararea unei
-        masini de facut acest tip special de punga si numai.</p>
+            <p class="w3-text-grey">Prin programul fondurilor europene, s-a investit o suma considerabila pentru
+                cumpararea unei
+                masini de facut acest tip special de punga si numai.</p>
+        </div>
     </div>
-  </div>
 </div>
 
 {% endblock %}

@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 
-
 class AuthUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         if not email:

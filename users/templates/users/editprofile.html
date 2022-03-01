@@ -10,6 +10,9 @@
 body{margin-top:20px;}
 
 
+
+
+
     </style>
 </head>
 {% endblock %}
@@ -18,55 +21,32 @@ body{margin-top:20px;}
 <body>
 <div class="container bootstrap snippets bootdey">
     <h1>Edit Profile</h1>
-      <hr>
-	<div class="row">
-      <!-- edit form column -->
-      <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a>
-          <i class="fa fa-coffee"></i>
-          Here you can <strong>edit your profile</strong>.
+    <hr>
+    <div class="row">
+        <!-- edit form column -->
+        <div class="col-md-9 personal-info">
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                Here you can <strong> edit your profile</strong>.
+            </div>
+            <h3>Personal info</h3>
+
+            <div>
+                <form method="post" action="" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <hr>
+
+                    <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit"
+                           value="Update"/>
+                </form>
+            </div>
+
         </div>
-        <h3>Personal info</h3>
-
-        <form class="form-horizontal" role="form" method="post" action="{% url 'users:editprofile' %}">
-           {% csrf_token %}
-
-          <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="{{ user.first_name }}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="{{ user.last_name }}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Company:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="{{ user.company }}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Phone No.</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value=" {{ user.phone_no }}">
-            </div>
-          </div>
-          </div><div></div>
-          <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Update" />
     </div>
-       </form>
-      </div>
-  </div>
 </div>
-
-
-<hr>
-
 </body>
 {% endblock %}
 </html>

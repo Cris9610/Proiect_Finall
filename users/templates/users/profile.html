@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Profile of {{ request.user.first_name }} {{ request.user.last_name }} </title>
+<title>Profile of {{ request.user.first_name }} {{ request.user.last_name }} </title>
 <style>
     body {
     background-color: #f9f9fa
@@ -139,6 +139,8 @@ h6 {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out
 }
+
+
 </style>
 {% endblock %}
 
@@ -153,17 +155,21 @@ h6 {
                         <div class="col-sm-4 bg-c-lite-green user-profile">
                             <div class="card-block text-center text-white">
                                 <div class="col-200">
-                        <img src="{{ request.user.profile.image }}" width="100" />
-                    </div>
-<div>
-            <form method="post" action="{% url 'users:profile' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Upload" />
+                                    <img src="{{ request.user.profile.image }}" width="100"/>
+                                </div>
+                                {% if 'profile/editprofile' not in request.path %}
+                                <div>
 
-            </form>
-</div>
-    <h6 class="f-w-600">{{ request.user.first_name }} {{ request.user.last_name }}</h6>
+                                    <form method="post" action="" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top"
+                                               type="submit" value="Upload"/>
+
+                                    </form>
+
+                                </div>
+                                <h6 class="f-w-600">{{ request.user.first_name }} {{ request.user.last_name }}</h6>
                                 <p>{{ request.user.phone_no }}</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                             </div>
                         </div>
@@ -180,7 +186,7 @@ h6 {
                                         <h6 class="text-muted f-w-400">{{ user.last_name }}</h6>
                                     </div>
                                 </div>
-<hr>
+                                <hr>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Email</p>
@@ -191,14 +197,23 @@ h6 {
                                         <h6 class="text-muted f-w-400">{{ user.company }}</h6>
                                     </div>
 
-<div class="col-200">
-    <hr>
-<!--                        <a  href="editprofile/" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Edit Profile</a>-->
-                    </div>
+                                    <div class="col-200">
+                                        <hr>
+                                        <a href="{% url 'users:editprofile' request.user.id %}" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Edit Profile</a>
+                                    </div>
                                 </div>
 
                             </div>
                         </div>
+                        {% else %}
+                        <form method="post" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top"
+                                   type="submit" value="Save Profile"/>
+
+                        </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -206,56 +221,5 @@ h6 {
     </div>
 </div>
 </body>
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-6">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-200">-->
-<!--                        <img src="{{ request.user.profile.image }}" width="160" />-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-6">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-200">-->
-<!--                        Nume: {{ request.user.last_name }}-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="row">-->
-<!--                    <div class="col-200">-->
-<!--                        Prenume: {{ request.user.first_name }}-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="row">-->
-<!--                    <div class="col-200">-->
-<!--                        Email: {{ request.user.email }}-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="row">-->
-<!--                    <div class="col-200">-->
-<!--                        Numar telefon: {{ request.user.phone_no }}-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="row">-->
-<!--                    <div class="col-200">-->
-<!--                        Company: {{ request.user.company }}-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="row">-->
-<!--                    <div class="col-200">-->
-<!--                        <a  href="/users/editprofile/" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Edit Profile</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
 
-<!--        <div>-->
-<!--            <form method="post" action="{% url 'users:profile' %}" enctype="multipart/form-data">-->
-<!--                {% csrf_token %}-->
-<!--                {{ form.as_p }}-->
-<!--                <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Upload" />-->
-
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
 {% endblock %}

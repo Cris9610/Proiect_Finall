@@ -5,6 +5,7 @@ from users.models import Profile
 
 AuthUserModel = get_user_model()
 
+
 @receiver(post_save, sender=AuthUserModel)
 def create_profile(instance, created, **kwargs):
     if created is True:
