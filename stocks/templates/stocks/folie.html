@@ -33,6 +33,7 @@ th {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+
 </style>
 {% endblock %}
 
@@ -40,13 +41,16 @@ th {
 
 <h1>Adauga Produs (Folie)</h1>
 <hr>
-    <form method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-            <table><th>{{ field.label }}</th><td>{{ field }}</th></table>
-        {% endfor %}
-        <button type="submit" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Salveaza</button>
+<form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <table>
+        <th>{{ field.label }}</th>
+        <td>{{ field }}
+        </th></table>
+    {% endfor %}
+    <button type="submit" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Salveaza</button>
 
-    </form>
+</form>
 
 {% endblock %}

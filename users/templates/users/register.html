@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-	    <title>Register user</title>
+<title>Register user</title>
 
 
 <style>
@@ -13,17 +13,16 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	border-radius: 20px;
-	padding: 40px;
+	padding: 460px;
 
 }
 
-.form {
-  background: linear-gradient(180deg, grey, grey,grey ,black);
+form {
+  background: linear-gradient(180deg,grey,grey,black);
   border-radius: 20px;
   box-sizing: border-box;
-  height: 590px;
+  height: 900px;
   padding: 25px;
   width: 350px;
 
@@ -34,14 +33,14 @@
   font-family: sans-serif;
   font-size: 36px;
   font-weight: 600;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 50px;
 }
 
 .subtitle {
-  color: #eee;
+  color: black;
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   margin-top: 10px;
 }
@@ -51,6 +50,7 @@
   height: 50px;
   position: relative;
   width: 100%;
+  color: white
 }
 
 .ic2 {
@@ -66,64 +66,44 @@
   font-size: 18px;
   height: 100%;
   outline: 0;
-  padding: 4px 20px 0;
+  padding: 4px 20px ;
   width: 100%;
-}
 
-.cut {
-  background-color: #15172b;
-  border-radius: 10px;
-  height: 20px;
-  left: 20px;
-  position: absolute;
-  top: -20px;
-  transform: translateY(0);
-  transition: transform 200ms;
-  width: 76px;
-}
-
-.cut-short {
-  width: 50px;
 }
 
 
 .submit {
-    border-radius: 12px;
+  border-radius: 12px;
   border: 0;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 20px;
   height: 50px;
-  margin-top: 38px;
+  margin-top: 750px;
   outline: 0;
   text-align: center;
   width: 100%;
+
 }
 
 </style>
 
 {% endblock %}
-	
+
 {% block content %}
 
 <div class="title d-flex justify-content-center ">Inregistrare</div>
 <div class="subtitle d-flex justify-content-center">Creati-va un cont!</div>
 
 <div class="container">
-	<form action="{% url 'users:register' %}" method="post" class="form">
-		{% csrf_token %}
+<form action="{% url 'users:register' %}" method="post">
+	        {% csrf_token %}
 
-		{% for field in form %}
-		<div class="input-container ic2" >
+            <div class="input-container">
+	        {{ form }}
+            </div>
 
-		{{ field }}
-
-		</div>
-
-		{% endfor %}
-
-<!--	        {{ form | crispy }}-->
-	        <div><input type="submit" class="submit w3-button w3-black w3-padding-large w3-large w3-margin-top" value="Register"/></div>
+	        <input type="submit" class="submit w3-button w3-black w3-padding-large w3-large " value="Register"/>
 	</form>
 </div>
 

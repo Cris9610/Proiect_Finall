@@ -3,18 +3,20 @@ from django.template.loader import get_template
 from django.conf import settings
 import os
 
+
 def email():
     subject = 'Subiectul mailului'
-    message = 'Primul mail trimis din aplicatia django. Felicitari Cris!'
+    message = 'Multumim pentru inregistrare!'
     email_from = 'from@mysite.com'
     recipient_list = ['croli_sto@yahoo.com']
     send_mail(subject, message, email_from, recipient_list)
+
 
 def send_register_mail(user):
     context = {
         'first_name': user.first_name,
         'last_name': user.last_name,
-        'email':user.email,
+        'email': user.email,
     }
 
     template = get_template('users/emails/register.html')

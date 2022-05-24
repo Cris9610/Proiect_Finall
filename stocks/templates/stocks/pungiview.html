@@ -15,28 +15,28 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Index</th>
-                <th>Tip punga</th>
-                <th>Inaltime Punga (mm)</th>
-                <th>Latime Punga (mm)</th>
-                <th>Inaltime Pliu (mm)</th>
-                <th>Grosime Folie Punga (mm)</th>
-                <th>Zipper</th>
-                <th>Eurohole</th>
-                <th>Ciupitura</th>
-                <th>Cantitate</th>
+        <tr>
+            <th>Index</th>
+            <th>Tip punga</th>
+            <th>Inaltime Punga (mm)</th>
+            <th>Latime Punga (mm)</th>
+            <th>Inaltime Pliu (mm)</th>
+            <th>Grosime Folie Punga (mm)</th>
+            <th>Zipper</th>
+            <th>Eurohole</th>
+            <th>Ciupitura</th>
+            <th>Cantitate</th>
 
-                {% if request.user.is_superuser %}
-                <th>Actions</th>
-                {% endif %}
+            {% if request.user.is_superuser %}
+            <th>Actions</th>
+            {% endif %}
 
-            </tr>
+        </tr>
         </thead>
         <tbody>
         {% for item in object_list %}
         <tr>
-            <td>{{ forloop.counter0|add:page_obj.start_index  }}</td>
+            <td>{{ forloop.counter0|add:page_obj.start_index }}</td>
             <td>{{ item.tip_punga }}</td>
             <td>{{ item.inaltime_punga }}</td>
             <td>{{ item.latime_punga }}</td>
@@ -47,17 +47,19 @@
                 {% else %}
                 No
                 {% endif %}
-                </td>
+            </td>
             <td>{% if item.eurohole is True %}
                 Yes
                 {% else %}
                 No
-                {% endif %}</td>
+                {% endif %}
+            </td>
             <td>{% if item.ciupitura is True %}
                 Yes
                 {% else %}
                 No
-                {% endif %}</td>
+                {% endif %}
+            </td>
             <td>{{ item.cantitate }}</td>
 
             {% if request.user.is_superuser %}
@@ -72,32 +74,32 @@
 </div>
 <hr>
 
+
 {% if is_paginated %}
-    <ul class="pagination">
-        {% if page_obj.has_previous %}
-            <li><a class="btn btn-light" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-        {% else %}
-            <a class="disabled btn btn-dark">&laquo;</a>
-        {% endif %}
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li><a class="btn btn-light" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+    <a class="disabled btn btn-dark">&laquo;</a>
+    {% endif %}
 
-        {% for i in paginator.page_range %}
-            {% if page_obj.number == i %}
-                <li class="active btn btn-info"><span>{{ i }} <span class="sr-only">(curent)</span></span></li>
-            {% else %}
-                <li><a class="btn btn-outline-info" href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %}
+    {% for i in paginator.page_range %}
+    {% if page_obj.number == i %}
+    <li class="active btn btn-info"><span>{{ i }} <span class="sr-only">(curent)</span></span></li>
+    {% else %}
+    <li><a class="btn btn-outline-info" href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
 
-        {% endfor %}
+    {% endfor %}
 
-        {% if page_obj.has_next %}
-            <li><a class="btn btn-light" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-        {% else %}
-            <a class="disabled btn btn-dark">&raquo;</a>
-        {%endif%}
-        <hr>
-        <p>Rezultate afisate {{ page_obj.start_index }}-{{ page_obj.end_index }} din {{ page_obj.paginator.count }}</p>
-    </ul>
+    {% if page_obj.has_next %}
+    <li><a class="btn btn-light" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+    <a class="disabled btn btn-dark">&raquo;</a>
+    {%endif%}
+    <hr>
+    <p>Rezultate afisate {{ page_obj.start_index }}-{{ page_obj.end_index }} din {{ page_obj.paginator.count }}</p>
+</ul>
 {% endif %}
-
 
 {% endblock %}

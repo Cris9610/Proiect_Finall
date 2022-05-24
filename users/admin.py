@@ -23,23 +23,3 @@ class AdminAuthUser(BaseUserAdmin):
         }),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
-
-# @admin.register(AuthUser)
-# class AdminProduse(BaseUserAdmin):
-#     ordering = ('email',)
-#     list_display = ('email', 'first_name', 'last_name', 'is_staff')
-#     search_fields = ('email', 'first_name', 'last_name')
-#     add_fieldsets = (
-#         (None, {
-#             'classes': ('wide',),
-#             'fields': ('email', 'first_name', 'last_name', 'password1', 'password2'),
-#         }),
-#     )
-#     fieldsets = (
-#         (None, {'fields': ('email', 'password')}),
-#         (_('Personal info'), {'fields': ('first_name', 'last_name',)}),
-#         (_('Permissions'), {
-#             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
-#         }),
-#         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
-#     )

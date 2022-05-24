@@ -1,0 +1,1 @@
+web gunicorn Proiect_Final.wsgi:application --log-file -

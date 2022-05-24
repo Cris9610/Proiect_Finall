@@ -4,11 +4,23 @@ from django.views.generic import UpdateView
 from users.forms import RegisterForm, UserImageForm, ProfileImageForm
 from django.contrib.auth import authenticate, login, logout
 from users.email import send_register_mail
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test, login_required
 from users.forms import AuthUser
 
-from users.forms import EditProfileForm
 
+def login_required(function=None, redirect_field_name='login', login_url='users:login'):
+    """
+    Decorator for views that checks that the user is logged in, redirecting
+    to the log-in page if necessary.
+    """
+    actual_decorator = user_passes_test(
+        lambda u: u.is_authenticated,
+        login_url=login_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
 
 def register(request):
     if request.method == 'GET':
@@ -22,7 +34,7 @@ def register(request):
             send_register_mail(user)
 
             return redirect('users:login')
-    return render(request, 'users/register.html', {'form': form,  })
+    return render(request, 'users/register.html', {'form': form, })
 
 
 def login_user(request):
@@ -87,29 +99,17 @@ def profile_view(request):
         'form': form
     })
 
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
+    model = AuthUser
+    fields = ['first_name', 'last_name', 'phone_no', 'company']
+    template_name = 'users/editprofile.html'
 
-# def UpdateProfileView(request):
-#     if request.method == 'GET':
-#         form = EditProfileForm()
-#     else:
-#         form = EditProfileForm(request.POST)
-#
-#         if form.is_valid():
-#             form.save()
-#
-#             return render(request, 'users:editconf')
-#
-#     return render(request, 'users/editprofile.html', {
-#         'form': form
-#     })
+    def get_queryset(self):
+        return AuthUser.objects.filter(is_active=True)
 
-# class UpdateProfileView(LoginRequiredMixin, UpdateView):
-#     model = AuthUser
-#     fields = ['phone_no', 'first_name', 'last_name','company']
-#     template_name = 'users/profile.html'
-#
-#     def get_queryset(self):
-#         return AuthUser.objects.filter(active=True)
-#
-#     def get_success_url(self):
-#         return reverse ('users/profile/')
+    def form_valid(self, form):
+        print(form.errors)
+        return super(UpdateProfileView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse ('users:profile')
