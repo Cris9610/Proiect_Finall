@@ -7,17 +7,26 @@
 {% block content %}
 <h1>Incarcati imaginea</h1>
 <hr>
-<p>
+<table>
+<tr><td>
+
+<tr><th>
     Va rugam sa incarcati imaginea modelului de punga pe care il doriti!
-</p>
+</th>
+</tr>
 <div class="container">
     <div>
-        <form method="post" action="{% url 'users:upload' %}" enctype="multipart/form-data">
+        <tr><th><form method="post" action="{% url 'users:upload' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Upload"/>
+</th>
+            </tr>
+
+            <tr><td><input class="w3-button w3-black w3-padding-large w3-large w3-margin-top" type="submit" value="Upload"/> </td></tr>
         </form>
     </div>
 </div>
-
+</td></tr>
+    <td>*va rugam incarcati imaginea cu denumirea firmei din partea cui a fost incarcata.</td>
+</table>
 {% endblock %}
